@@ -49,6 +49,22 @@ Or with **yarn**:
 yarn add react-native-picture-editor-v1
 ```
 
+# Android:
+
+No extra required steps.
+
+# iOS:
+
+```
+cd ios && pod install && cd ..
+```
+
+# Do not forget to Clear Metro bundler cache (recommended)
+
+```
+yarn start --reset-cache
+```
+
 # Note:
 
 Please follow the exact steps for each required dependencie.
