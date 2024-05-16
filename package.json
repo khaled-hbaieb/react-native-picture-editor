@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "private": false,
   "main": "index.ts",
+  "description": "The react-native-picture-editor package provides powerful image editing capabilities for React Native applications.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +25,9 @@
     "react-native-image-picker": ">=7.1.2",
     "react-native-reanimated": ">=3.11.0",
     "react-native-share": ">=10.2.0"
+  },
+  "publishConfig": {
+    "registry": "https://github.com/khaled-hbaieb/react-native-picture-editor"
   },
   "repository": "https://github.com/khaled-hbaieb/react-native-picture-editor",
   "homepage": "https://github.com/khaled-hbaieb/react-native-picture-editor",
