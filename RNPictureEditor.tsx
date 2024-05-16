@@ -4,7 +4,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {StickerProvider} from './src/components/StickerContext';
 import PaintingCanvas from './src/components/PaintingCanvas';
 
-function RNPhotoEditor(): React.JSX.Element {
+function RNPictureEditor(): React.JSX.Element {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaView style={styles.container}>
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {RNPhotoEditor};
+export {RNPictureEditor};

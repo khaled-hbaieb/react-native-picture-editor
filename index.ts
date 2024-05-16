@@ -1,1 +1,1 @@
-export {RNPhotoEditor} from './RNPhotoEditor';
+export {RNPictureEditor} from './RNPictureEditor';
