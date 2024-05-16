@@ -1,6 +1,6 @@
 {
-  "name": "react-native-picture-editor",
-  "version": "0.0.1",
+  "name": "react-native-picture-editor-v1",
+  "version": "0.0.2",
   "private": false,
   "main": "index.ts",
   "scripts": {
