@@ -1,6 +1,8 @@
 # react-native-picture-editor
 
-<img src="https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/12286c5b-1f6a-45b6-b782-5c781994b2f5" alt="image" width="200"/>
+<img src="https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/12286c5b-1f6a-45b6-b782-5c781994b2f5" alt="iOS" width="200"/>
+
+<img src="https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/45d89219-4838-4f1b-a270-5957da29dff7" alt="Android" width="200"/>
 
 
 The **react-native-picture-editor** package provides powerful image editing capabilities for React Native applications. 
