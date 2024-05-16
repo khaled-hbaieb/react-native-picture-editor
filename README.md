@@ -74,13 +74,13 @@ Please follow the exact steps for each required dependencie.
 After installation, import and use the package in your React Native application. For example:
 
 ```
-import {RNPhotoEditor} from 'react-native-picture-editor-v1';
+import {RNPictureEditor} from 'react-native-picture-editor-v1';
 
 function App(): React.JSX.Element {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaView style={styles.container}>
-        <RNPhotoEditor />
+        <RNPictureEditor />
       </SafeAreaView>
     </GestureHandlerRootView>
   );
