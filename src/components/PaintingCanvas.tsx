@@ -11,11 +11,11 @@ import {
 import React, {useCallback, useRef, useState} from 'react';
 import {
   Alert,
+  Animated,
   Dimensions,
   LayoutChangeEvent,
   LayoutRectangle,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import {
@@ -30,7 +30,7 @@ import {useStickerContext} from './StickerContext';
 import {GestureHandler} from './GestureHandler';
 import {BottomSheetModal} from '@gorhom/bottom-sheet';
 import {StickerModal} from './StickerModal';
-import ActionButton from './ActionButton';
+import DeleteButtonAnimated from './DeleteButtonAnimated';
 
 const {width, height} = Dimensions.get('window');
 
@@ -162,6 +162,22 @@ const PaintingCanvas = () => {
     [deleteBtnlayout?.x],
   );
 
+  const animatedDeketeBtnScale = useRef(new Animated.Value(0)).current;
+
+  React.useEffect(() => {
+    animatedDeketeBtnScale.setValue(1);
+  }, []);
+
+  const handleAnimatedDeketeBtnScale = () => {
+    animatedDeketeBtnScale.setValue(0.8);
+    Animated.spring(animatedDeketeBtnScale, {
+      toValue: 1,
+      bounciness: 24,
+      speed: 20,
+      useNativeDriver: true,
+    }).start();
+  };
+
   const checkOverlap = (
     stickerCenterX: number,
     stickerCenterY: number,
@@ -173,6 +189,7 @@ const PaintingCanvas = () => {
     // Check if the sticker's position overlaps with the delete button area
     if (stickerCenterY >= height + btnY) {
       setIsOverLappedIndex(stickerIndex.toString());
+      handleAnimatedDeketeBtnScale();
     } else {
       setIsOverLappedIndex(null);
     }
@@ -246,12 +263,9 @@ const PaintingCanvas = () => {
         bottomSheetModalRef={bottomSheetModalRef}
       />
       {isDeletebuttonVisible && (
-        <ActionButton
-          onPress={() => {}}
-          text={isOverLappedIndex ? '' : 'notOverLapped'}
-          style={{backgroundColor: 'red', height: 30, bottom: 20, width: 100}}
+        <DeleteButtonAnimated
           onLayout={onButtonLayout}
-          children={<Text>Delete</Text>}
+          animatedDeketeBtnScale={animatedDeketeBtnScale}
         />
       )}
     </View>

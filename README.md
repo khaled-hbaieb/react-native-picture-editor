@@ -26,13 +26,13 @@ To install the required dependencies, run the following commands in your project
 With **npm**:
 
 ```
-npm install @gorhom/bottom-sheet @shopify/react-native-skia react-native-fs react-native-gesture-handler react-native-image-picker react-native-reanimated react-native-share
+npm install @gorhom/bottom-sheet @shopify/react-native-skia react-native-fs react-native-gesture-handler react-native-image-picker react-native-reanimated react-native-share react-native-svg
 ```
 
 Or with **yarn**:
 
 ```
-yarn add @gorhom/bottom-sheet @shopify/react-native-skia react-native-fs react-native-gesture-handler react-native-image-picker react-native-reanimated react-native-share
+yarn add @gorhom/bottom-sheet @shopify/react-native-skia react-native-fs react-native-gesture-handler react-native-image-picker react-native-reanimated react-native-share react-native-svg
 ```
 
 After installing the required dependencies, you can install the **react-native-picture-editor-v1** by running the command:

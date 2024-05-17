@@ -1,8 +1,10 @@
-import {FlatList, StyleSheet, View} from 'react-native';
+import {Dimensions, FlatList, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Colors} from '../../constants';
 import ColorButton from './ColorButton';
 import {Color} from '../../types';
+
+const {width} = Dimensions.get('window');
 
 type ColorsMenuProps = {
   handleChangeColor: (color: Color) => void;
@@ -14,7 +16,7 @@ const ColorsMenu: React.FC<ColorsMenuProps> = ({handleChangeColor, color}) => {
     <ColorButton
       color={item}
       onPress={() => handleChangeColor(item)}
-      isSelected={color === item}
+      inMenu={true}
     />
   );
   return (
@@ -37,7 +39,7 @@ const styles = StyleSheet.create({
   toolbar: {
     backgroundColor: '#ffffff',
     height: 50,
-    width: 350,
+    width: width * 0.8,
     borderRadius: 100,
     borderColor: '#f0f0f0',
     borderWidth: 1,
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
   },
   colorToolbar: {
     position: 'absolute',
-    top: 70,
+    top: 80,
     justifyContent: 'space-between',
     zIndex: 100,
   },

@@ -9,8 +9,8 @@ import {
 import React from 'react';
 
 interface ActionButtonProps {
-  text: string;
-  onPress: () => void;
+  text?: string;
+  onPress?: () => void;
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   onLayout?: (event: LayoutChangeEvent) => void;
@@ -31,8 +31,8 @@ const ActionButton: React.FC<ActionButtonProps> = ({
       disabled={disabled}
       onPress={onPress}
       style={[styles.container, style]}>
-      {text ? <Text>{text}</Text> : null}
       {children}
+      {text ? <Text style={styles.textStyle}>{text}</Text> : null}
     </Pressable>
   );
 };
@@ -44,5 +44,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 30,
+  },
+  textStyle: {
+    color: '#000000',
+    fontSize: 13,
   },
 });

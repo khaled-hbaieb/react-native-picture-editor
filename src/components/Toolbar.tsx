@@ -1,4 +1,4 @@
-import {StyleSheet, View} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
 import {ActionButtonType, Color, PathWithColorAndWidth} from '../types';
 import Separator from './Separator';
@@ -8,6 +8,15 @@ import CurrentColorItem from './color/CurrentColorItem';
 import ColorsMenu from './color/ColorsMenu';
 import ActionButton from './ActionButton';
 import {SkImage} from '@shopify/react-native-skia';
+import {
+  SaveIcon,
+  ImportIcon,
+  ClearIcon,
+  StickerIcon,
+  UndoIcon,
+} from '../drawables/svg';
+
+const {width, height} = Dimensions.get('window');
 
 type ToolbarProps = {
   color: Color;
@@ -68,24 +77,40 @@ const Toolbar = ({
         />
         <Separator />
         <CurrentColorItem
-          isSelected={true}
           color={color}
           setShowColors={setShowColors}
           showColors={showColors}
         />
         <Separator />
-        <ActionButton onPress={onImport} text={ActionButtonType.IMPORT} />
+        <ActionButton
+          onPress={onImport}
+          text={ActionButtonType.IMPORT}
+          children={<ImportIcon width={20} height={20} />}
+        />
         <Separator />
-        <ActionButton onPress={onSave} text={ActionButtonType.SAVE} />
+        <ActionButton
+          onPress={onSave}
+          text={ActionButtonType.SAVE}
+          children={<SaveIcon width={20} height={20} />}
+        />
         <Separator />
-        <ActionButton onPress={handleClear} text={ActionButtonType.CLEAR} />
+        <ActionButton
+          onPress={handleClear}
+          text={ActionButtonType.CLEAR}
+          children={<ClearIcon width={20} height={20} />}
+        />
         <Separator />
         <ActionButton
           onPress={handlePresentModalPress}
           text={ActionButtonType.STICKER}
+          children={<StickerIcon width={20} height={20} />}
         />
         <Separator />
-        <ActionButton onPress={undoLastDraw} text={ActionButtonType.UNDO} />
+        <ActionButton
+          onPress={undoLastDraw}
+          text={ActionButtonType.UNDO}
+          children={<UndoIcon width={20} height={20} />}
+        />
       </View>
     </>
   );
@@ -97,7 +122,7 @@ const styles = StyleSheet.create({
   toolbar: {
     backgroundColor: '#ffffff',
     height: 50,
-    width: 400,
+    width: width * 0.9,
     position: 'absolute',
     top: 20,
     zIndex: 100,
