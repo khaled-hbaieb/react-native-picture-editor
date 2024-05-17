@@ -2,6 +2,12 @@
 
 <img src="https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/2960c6b4-20d1-423d-abd8-cd5494e7f8c0" alt="iOS" width="200"/>
 
+<div style="margin-top: 10px; margin-bottom: 10px;">
+  <img src='https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/d73d30b5-94b9-46f0-963c-32867870cafd' width="50" height="50" />
+  <strong>Warning</strong>
+</div>
+
+This package is still under development.
 
 The **react-native-picture-editor-v1** package provides powerful image editing capabilities for React Native applications.
 This package allows users to draw on images, add stickers, import photos, and apply various edits directly on top of images within the app.
