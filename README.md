@@ -1,8 +1,7 @@
 # react-native-picture-editor-v1
 
-<img src="https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/12286c5b-1f6a-45b6-b782-5c781994b2f5" alt="iOS" width="200"/>
+<img src="https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/2960c6b4-20d1-423d-abd8-cd5494e7f8c0" alt="iOS" width="200"/>
 
-<img src="https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/45d89219-4838-4f1b-a270-5957da29dff7" alt="Android" width="200"/>
 
 The **react-native-picture-editor-v1** package provides powerful image editing capabilities for React Native applications.
 This package allows users to draw on images, add stickers, import photos, and apply various edits directly on top of images within the app.
@@ -11,14 +10,14 @@ Once the editing is complete, users can save the edited image locally on their d
 
 This package is designed to enable seamless integration of image editing functionalities into React Native apps, enhancing the user experience with customizable image manipulation features.
 
-# Features include:
+## Features include:
 
 - Drawing on images with customizable colors and brush sizes.
 - Adding stickers and overlaying them on photos.
 - Importing images from the device's gallery for editing.
 - Applying edits directly on images and saving the edited version locally.
 
-# Installation:
+## Installation:
 
 This package depends on various npm packages to function correctly.
 To install the required dependencies, run the following commands in your project directory:
@@ -49,27 +48,27 @@ Or with **yarn**:
 yarn add react-native-picture-editor-v1
 ```
 
-# Android:
+## Android:
 
 No extra required steps.
 
-# iOS:
+## iOS:
 
 ```
 cd ios && pod install && cd ..
 ```
 
-# Do not forget to Clear Metro bundler cache (recommended)
+## Do not forget to Clear Metro bundler cache (recommended)
 
 ```
 yarn start --reset-cache
 ```
 
-# Note:
+## Note:
 
 Please follow the exact steps for each required dependencie.
 
-# Usage:
+## Usage:
 
 After installation, import and use the package in your React Native application. For example:
 
