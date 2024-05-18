@@ -3,8 +3,6 @@
 <img src="https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/2960c6b4-20d1-423d-abd8-cd5494e7f8c0" alt="iOS" width="200"/>
 <img src="https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/55ccb779-4543-47b7-a1d0-97f3c8c560fa" alt="iOS" width="200"/>
 
-
-
 <div style="margin-top: 10px; margin-bottom: 10px;">
   <img src='https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/d73d30b5-94b9-46f0-963c-32867870cafd' width="50" height="50" />
   <strong>Warning</strong>
@@ -21,10 +19,11 @@ This package is designed to enable seamless integration of image editing functio
 
 ## Features include:
 
-- Drawing on images with customizable colors and brush sizes.
-- Adding stickers and overlaying them on photos.
-- Importing images from the device's gallery for editing.
-- Applying edits directly on images and saving the edited version locally.
+- Adding Images And Stickers
+- Drawing with multiple Colors
+- Scaling and Rotating Objects
+- Deleting Objects
+- Saving to Phone storage.
 
 ## Installation:
 
@@ -100,3 +99,8 @@ const styles = StyleSheet.create({
   },
 });
 ```
+
+## Features to be included:
+
+- Cropping.
+- Adding Text with Colors.
