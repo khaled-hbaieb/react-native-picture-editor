@@ -9,6 +9,7 @@ export interface Sticker {
   Sticker: FC<StickerProps>;
   size: SkSize;
   matrix: SharedValue<SkMatrix>;
+  index: number;
 }
 
 type Stickers = Sticker[];
@@ -25,23 +26,24 @@ type StickerAction =
   | {type: 'remove'; index: number}
   | {type: 'update'; index: number; matrix: SkMatrix};
 
-/**
- * Reduces the stickers array based on the action type.
- *
- * @param {Sticker[]} stickers - The array of stickers to be reduced.
- * @param {StickerAction} action - The action object containing type and additional data.
- * @return {Stickers} The updated array of stickers after applying the action.
- */
-const stickerReducer = (stickers: Stickers, action: StickerAction) => {
+const stickerReducer = (
+  stickers: Stickers,
+  action: StickerAction,
+): Stickers => {
   switch (action.type) {
     case 'add':
-      return [...stickers, action.sticker];
+      const newStateAdd = [...stickers, {...action.sticker, index: Date.now()}];
+      return newStateAdd;
     case 'remove':
-      return stickers.filter((_, index) => index !== action.index);
+      const newStateRemove = stickers.filter(
+        (sticker, index) => sticker.index !== action.index,
+      );
+      return newStateRemove;
     case 'update':
-      return stickers.map((sticker, index) =>
+      const newStateUpdate = stickers.map((sticker, index) =>
         index === action.index ? {...sticker, matrix: action.matrix} : sticker,
       );
+      return newStateUpdate;
     default:
       return stickers;
   }
@@ -53,6 +55,7 @@ export const useStickerContext = () => {
     throw new Error('No Sticker context found');
   }
   const {stickers, dispatch} = ctx;
+
   const addSticker = useCallback(
     (sticker: Sticker) => {
       dispatch({type: 'add', sticker});
@@ -73,6 +76,7 @@ export const useStickerContext = () => {
     },
     [dispatch],
   );
+
   return {
     stickers,
     addSticker,
@@ -86,7 +90,8 @@ interface StickerProviderProps {
 }
 
 export const StickerProvider = ({children}: StickerProviderProps) => {
-  const [stickers, dispatch] = useReducer(stickerReducer, []);
+  const [stickers, dispatch] = useReducer(stickerReducer, [] as Stickers);
+
   return (
     <StickerContext.Provider value={{stickers, dispatch}}>
       {children}

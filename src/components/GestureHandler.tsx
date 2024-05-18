@@ -43,7 +43,7 @@ export const GestureHandler = ({
     })
     .onEnd(() => {
       // Check if the sticker is overlapped, if so, delete it
-      if (handleDeleteSticker) runOnJS(handleDeleteSticker)?.(0);
+      if (handleDeleteSticker) runOnJS(handleDeleteSticker)?.(stickerIndex);
       //Hide delete button
       if (hideDeleteButton) runOnJS(hideDeleteButton)?.();
     })

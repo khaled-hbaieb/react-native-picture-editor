@@ -239,11 +239,11 @@ const PaintingCanvas = () => {
             strokeWidth={path.strokeWidth}
           />
         ))}
-        {stickers.map(({Sticker, matrix}, index) => {
+        {stickers.map(({Sticker, matrix, index}) => {
           return <Sticker key={index} matrix={matrix} />;
         })}
       </Canvas>
-      {stickers.map(({size, matrix}, index) => {
+      {stickers.map(({size, matrix, index}) => {
         return (
           <GestureHandler
             key={index}
