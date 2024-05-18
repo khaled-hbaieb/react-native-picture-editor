@@ -10,7 +10,6 @@ import {
   ImportIcon,
   ClearIcon,
   StickerIcon,
-  UndoIcon,
   StrokeWidthIcon,
   PencilIcon,
 } from '../drawables/svg';
@@ -63,13 +62,6 @@ const toolbarItems: ToolbarItem[] = [
     text: ActionButtonType.CLEAR,
     icon: <ClearIcon width={20} height={20} />,
     onPress: 'handleClear',
-  },
-
-  {
-    type: 'ActionButton',
-    text: ActionButtonType.UNDO,
-    icon: <UndoIcon width={20} height={20} />,
-    onPress: 'undoLastDraw',
   },
 ];
 
@@ -144,11 +136,7 @@ const Toolbar = ({
               setShowStrokes(false);
               setShowColors(false);
               break;
-            case 'undoLastDraw':
-              setSelected('');
 
-              undoLastDraw();
-              break;
             case 'setShowStrokes':
               setSelected(isSelected === item.text ? '' : item.text);
 

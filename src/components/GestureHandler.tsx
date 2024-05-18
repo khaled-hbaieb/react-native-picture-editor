@@ -12,6 +12,9 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import {rotateZ, scale, toM4, translate} from './matrixHelpers';
+import {Dimensions} from 'react-native';
+
+const {width} = Dimensions.get('window');
 
 interface GestureHandlerProps {
   matrix: SharedValue<SkMatrix>;
@@ -79,7 +82,7 @@ export const GestureHandler = ({
     position: 'absolute',
     width: size.width,
     height: size.height,
-    top: 0,
+    top: width * 0.2,
     left: 0,
     transform: [
       {

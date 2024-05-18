@@ -21,7 +21,7 @@ const DeleteButtonAnimated: React.FC<DeleteButtonAnimatedProps> = ({
   return (
     <View style={styles.container} onLayout={onLayout}>
       <Animated.View style={{transform: [{scale: animatedDeketeBtnScale}]}}>
-        <DeleteIcon width={40} height={40} color={'white'} />
+        <DeleteIcon width={35} height={35} color={'white'} />
       </Animated.View>
     </View>
   );
@@ -32,9 +32,9 @@ export default DeleteButtonAnimated;
 const styles = StyleSheet.create({
   container: {
     height: 50,
-    bottom: width * 0.35,
+    bottom: width * 0.45,
     width: 50,
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: 'white',
     borderRadius: 25,
     alignItems: 'center',

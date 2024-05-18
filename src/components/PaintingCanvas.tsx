@@ -19,18 +19,19 @@ import {
   View,
 } from 'react-native';
 import {
-  removeFileProtocol,
   saveBase64Image,
   selectImageFromGallery,
 } from '../utils/fileSystemUtils';
 import Toolbar from './Toolbar';
-import {Color, PathWithColorAndWidth} from '../types';
+import {ActionButtonType, Color, PathWithColorAndWidth} from '../types';
 import {Colors, initialLayout, strokes} from '../constants';
 import {useStickerContext} from './StickerContext';
 import {GestureHandler} from './GestureHandler';
-import {BottomSheetModal} from '@gorhom/bottom-sheet';
+import {BottomSheetModal, BottomSheetView} from '@gorhom/bottom-sheet';
 import {StickerModal} from './StickerModal';
 import DeleteButtonAnimated from './DeleteButtonAnimated';
+import ActionButton from './ActionButton';
+import {UndoIcon} from '../drawables/svg';
 
 const {width, height} = Dimensions.get('window');
 
@@ -38,7 +39,6 @@ const PaintingCanvas = () => {
   const [paths, setPaths] = useState<PathWithColorAndWidth[]>([]);
   const [color, setColor] = useState<Color>(Colors[0]);
   const ref = useCanvasRef();
-  const [image, setImage] = useState<string | null>(null);
   const [backgroundImage, setBackgroundImage] = useState<SkImage | null>();
   const [isDeletebuttonVisible, setIsDeletebuttonVisible] = useState(false);
   const [deleteBtnlayout, setDeleteBtnlayout] =
@@ -68,15 +68,12 @@ const PaintingCanvas = () => {
       // you can use image in an <Image> component
       // Or save to file using encodeToBytes -> Uint8Array
       const bytes = image.encodeToBytes();
-      // Specify a file name for the saved image
 
       // Call the saveBase64Image function to save the image
       saveBase64Image(bytes)
         .then(filePath => {
           if (filePath) {
             console.log('Image saved at:', filePath);
-            const filePathPatformSpecific = removeFileProtocol(filePath);
-            setImage(filePathPatformSpecific);
 
             // Handle success
             Alert.alert('Success', 'Image saved successfully.');
@@ -178,6 +175,14 @@ const PaintingCanvas = () => {
     }).start();
   };
 
+  /**
+   * Checks if the sticker's position overlaps with the delete button area.
+   *
+   * @param {number} stickerCenterX - The x-coordinate of the sticker's center.
+   * @param {number} stickerCenterY - The y-coordinate of the sticker's center.
+   * @param {number} stickerIndex - The index of the sticker.
+   * @return {void} This function does not return anything.
+   */
   const checkOverlap = (
     stickerCenterX: number,
     stickerCenterY: number,
@@ -203,6 +208,14 @@ const PaintingCanvas = () => {
 
   return (
     <View style={style.container}>
+      <View style={style.undoButtonContainer}>
+        <ActionButton
+          onPress={undoLastDraw}
+          text={ActionButtonType.UNDO}
+          children={<UndoIcon width={20} height={20} />}
+          isSelected={false}
+        />
+      </View>
       <Canvas style={style.canvasContainer} onTouch={touchHandler} ref={ref}>
         {backgroundImage ? (
           <SkiaImage
@@ -217,6 +230,7 @@ const PaintingCanvas = () => {
         ) : (
           <></>
         )}
+
         {paths.map((path, index) => (
           <Path
             key={index}
@@ -244,6 +258,7 @@ const PaintingCanvas = () => {
           />
         );
       })}
+
       <StickerModal
         handleSheetChanges={handleSheetChanges}
         handlePresentModalPress={handlePresentModalPress}
@@ -283,8 +298,17 @@ const style = StyleSheet.create({
   canvasContainer: {
     flex: 1,
     width: '100%',
-    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: width * 0.2,
+    marginBottom: width * 0.4,
+    borderColor: 'rgba(30,30,30,1)',
+    borderWidth: 0.5,
+    backgroundColor: 'black',
+  },
+  undoButtonContainer: {
+    position: 'absolute',
+    right: 10,
+    top: 5,
   },
 });

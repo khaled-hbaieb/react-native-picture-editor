@@ -1,6 +1,6 @@
 {
   "name": "react-native-picture-editor-v1",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "private": false,
   "main": "index.ts",
   "description": "The react-native-picture-editor package provides powerful image editing capabilities for React Native applications.",
