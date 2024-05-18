@@ -55,37 +55,35 @@ export const StickerModal: React.FC<StickerModalProps> = ({
   );
 
   // variables
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
+  const snapPoints = useMemo(() => ['25%', '50%', '75%'], []);
 
   return (
     <BottomSheetModalProvider>
-      <View style={styles.container}>
-        <BottomSheetModal
-          ref={bottomSheetModalRef}
-          index={1}
-          snapPoints={snapPoints}
-          onChange={handleSheetChanges}>
-          <BottomSheetView style={styles.contentContainer}>
-            {stickers.map(({Sticker, size}, index) => {
-              const {width, height} = size;
-              const src = rect(0, 0, width, height);
-              const dst = deflate(rect(0, 0, tileWidth, tileHeight), 12);
-              const transform = fitbox('contain', src, dst);
-              return (
-                <Pressable
-                  key={index}
-                  onPress={onPress.bind(null, Sticker, size)}>
-                  <Canvas style={{width: tileWidth, height: tileHeight}}>
-                    <Group transform={transform}>
-                      <Sticker matrix={Skia.Matrix()} />
-                    </Group>
-                  </Canvas>
-                </Pressable>
-              );
-            })}
-          </BottomSheetView>
-        </BottomSheetModal>
-      </View>
+      <BottomSheetModal
+        ref={bottomSheetModalRef}
+        index={1}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}>
+        <BottomSheetView style={styles.contentContainer}>
+          {stickers.map(({Sticker, size}, index) => {
+            const {width, height} = size;
+            const src = rect(0, 0, width, height);
+            const dst = deflate(rect(0, 0, tileWidth, tileHeight), 12);
+            const transform = fitbox('contain', src, dst);
+            return (
+              <Pressable
+                key={index}
+                onPress={onPress.bind(null, Sticker, size)}>
+                <Canvas style={{width: tileWidth, height: tileHeight}}>
+                  <Group transform={transform}>
+                    <Sticker matrix={Skia.Matrix()} />
+                  </Group>
+                </Canvas>
+              </Pressable>
+            );
+          })}
+        </BottomSheetView>
+      </BottomSheetModal>
     </BottomSheetModalProvider>
   );
 };
@@ -97,5 +95,8 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     alignItems: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    backgroundColor: 'rgb(34, 33, 33)',
   },
 });
