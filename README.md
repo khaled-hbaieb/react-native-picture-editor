@@ -1,7 +1,7 @@
 # react-native-picture-editor-v1
 
-<img src="https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/2960c6b4-20d1-423d-abd8-cd5494e7f8c0" alt="iOS" width="200"/>
-<img src="https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/55ccb779-4543-47b7-a1d0-97f3c8c560fa" alt="iOS" width="200"/>
+<img src="https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/738fd540-588b-416a-9d05-e1592830e9b1" alt="iOS" width="200"/>
+
 
 <div style="margin-top: 10px; margin-bottom: 10px;">
   <img src='https://github.com/khaled-hbaieb/react-native-picture-editor/assets/62106729/d73d30b5-94b9-46f0-963c-32867870cafd' width="50" height="50" />
