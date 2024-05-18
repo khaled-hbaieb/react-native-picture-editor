@@ -25,11 +25,12 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 100,
     marginHorizontal: 5,
-    backgroundColor: '#f7f7f7',
+    backgroundColor: 'rgba(42,42,42,1)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   strokeOptionText: {
     fontSize: 18,
+    color: 'rgba(160,160,166,1)',
   },
 });

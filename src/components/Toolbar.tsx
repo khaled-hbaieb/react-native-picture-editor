@@ -1,10 +1,7 @@
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {Dimensions, FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {ActionButtonType, Color, PathWithColorAndWidth} from '../types';
-import Separator from './Separator';
 import StrokesMenu from './stroke/StrokesMenu';
-import CurrentStrokeItem from './stroke/CurrentStrokeItem';
-import CurrentColorItem from './color/CurrentColorItem';
 import ColorsMenu from './color/ColorsMenu';
 import ActionButton from './ActionButton';
 import {SkImage} from '@shopify/react-native-skia';
@@ -14,9 +11,67 @@ import {
   ClearIcon,
   StickerIcon,
   UndoIcon,
+  StrokeWidthIcon,
+  PencilIcon,
 } from '../drawables/svg';
 
 const {width, height} = Dimensions.get('window');
+
+interface ToolbarItem {
+  type: 'ActionButton';
+  text: ActionButtonType;
+  icon: React.ReactNode;
+  onPress: string;
+}
+
+const toolbarItems: ToolbarItem[] = [
+  {
+    type: 'ActionButton',
+    text: ActionButtonType.SHOWCOLORS,
+    icon: <PencilIcon width={28} height={28} />,
+    onPress: 'setShowColors',
+  },
+
+  {
+    type: 'ActionButton',
+    text: ActionButtonType.SHOWSTROKES,
+    icon: <StrokeWidthIcon width={20} height={20} />,
+    onPress: 'setShowStrokes',
+  },
+  {
+    type: 'ActionButton',
+    text: ActionButtonType.STICKER,
+    icon: <StickerIcon width={20} height={20} />,
+    onPress: 'handlePresentModalPress',
+  },
+  {
+    type: 'ActionButton',
+    text: ActionButtonType.IMPORT,
+    icon: <ImportIcon width={20} height={20} />,
+    onPress: 'onImport',
+  },
+
+  {
+    type: 'ActionButton',
+    text: ActionButtonType.SAVE,
+    icon: <SaveIcon width={20} height={20} />,
+    onPress: 'onSave',
+  },
+
+  {
+    type: 'ActionButton',
+    text: ActionButtonType.CLEAR,
+    icon: <ClearIcon width={20} height={20} />,
+    onPress: 'handleClear',
+  },
+
+  {
+    type: 'ActionButton',
+    text: ActionButtonType.UNDO,
+    icon: <UndoIcon width={20} height={20} />,
+    onPress: 'undoLastDraw',
+  },
+];
 
 type ToolbarProps = {
   color: Color;
@@ -45,6 +100,7 @@ const Toolbar = ({
 }: ToolbarProps) => {
   const [showStrokes, setShowStrokes] = useState(false);
   const [showColors, setShowColors] = useState(false);
+  const [isSelected, setSelected] = useState('');
 
   const handleStrokeWidthChange = (stroke: number) => {
     setStrokeWidth(stroke);
@@ -61,6 +117,67 @@ const Toolbar = ({
     setBackgroundImage(null);
   };
 
+  const renderItem = ({item}: {item: ToolbarItem}) => {
+    switch (item.type) {
+      case 'ActionButton':
+        const onPressHandler = () => {
+          switch (item.onPress) {
+            case 'onImport':
+              setSelected('');
+
+              onImport();
+              break;
+            case 'onSave':
+              setSelected('');
+
+              onSave();
+              break;
+            case 'handleClear':
+              setSelected('');
+
+              handleClear();
+              break;
+            case 'handlePresentModalPress':
+              setSelected('');
+
+              handlePresentModalPress();
+              setShowStrokes(false);
+              setShowColors(false);
+              break;
+            case 'undoLastDraw':
+              setSelected('');
+
+              undoLastDraw();
+              break;
+            case 'setShowStrokes':
+              setSelected(isSelected === item.text ? '' : item.text);
+
+              setShowStrokes(!showStrokes);
+              setShowColors(false);
+              break;
+            case 'setShowColors':
+              setSelected(isSelected === item.text ? '' : item.text);
+
+              setShowColors(!showColors);
+              setShowStrokes(false);
+
+            default:
+              break;
+          }
+        };
+        return (
+          <ActionButton
+            onPress={onPressHandler}
+            text={item.text}
+            children={item.icon}
+            isSelected={isSelected === item.text}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       {showStrokes && (
@@ -70,46 +187,16 @@ const Toolbar = ({
         <ColorsMenu handleChangeColor={handleChangeColor} color={color} />
       )}
       <View style={styles.toolbar}>
-        <CurrentStrokeItem
-          strokeWidth={strokeWidth}
-          showStrokes={showStrokes}
-          setShowStrokes={setShowStrokes}
-        />
-        <Separator />
-        <CurrentColorItem
-          color={color}
-          setShowColors={setShowColors}
-          showColors={showColors}
-        />
-        <Separator />
-        <ActionButton
-          onPress={onImport}
-          text={ActionButtonType.IMPORT}
-          children={<ImportIcon width={20} height={20} />}
-        />
-        <Separator />
-        <ActionButton
-          onPress={onSave}
-          text={ActionButtonType.SAVE}
-          children={<SaveIcon width={20} height={20} />}
-        />
-        <Separator />
-        <ActionButton
-          onPress={handleClear}
-          text={ActionButtonType.CLEAR}
-          children={<ClearIcon width={20} height={20} />}
-        />
-        <Separator />
-        <ActionButton
-          onPress={handlePresentModalPress}
-          text={ActionButtonType.STICKER}
-          children={<StickerIcon width={20} height={20} />}
-        />
-        <Separator />
-        <ActionButton
-          onPress={undoLastDraw}
-          text={ActionButtonType.UNDO}
-          children={<UndoIcon width={20} height={20} />}
+        <View style={{marginTop: 10}}>
+          <Text style={{color: 'rgba(160,160,166,1)', fontSize: 14}}>Edit</Text>
+        </View>
+        <FlatList
+          horizontal
+          data={toolbarItems}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index.toString()}
+          contentContainerStyle={styles.toolBarList}
+          showsHorizontalScrollIndicator={false}
         />
       </View>
     </>
@@ -120,18 +207,23 @@ export default Toolbar;
 
 const styles = StyleSheet.create({
   toolbar: {
-    backgroundColor: '#ffffff',
-    height: 50,
-    width: width * 0.9,
+    height: width * 0.3,
+    width: '100%',
     position: 'absolute',
-    top: 20,
+    bottom: 0,
     zIndex: 100,
-    borderRadius: 100,
-    borderColor: '#f0f0f0',
     borderWidth: 1,
-    flexDirection: 'row',
     paddingHorizontal: 20,
     alignItems: 'center',
     alignSelf: 'center',
+    borderTopWidth: 1,
+    borderTopColor: '#f0f0f0',
+    backgroundColor: 'rgba(31,31,31,1)',
+  },
+  toolBarList: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: '100%',
   },
 });

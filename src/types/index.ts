@@ -10,9 +10,11 @@ export type PathWithColorAndWidth = {
 };
 
 export enum ActionButtonType {
-  CLEAR = 'clear',
-  SAVE = 'save',
-  IMPORT = 'import',
-  STICKER = 'sticker',
-  UNDO = 'undo',
+  CLEAR = 'Clear',
+  SAVE = 'Save',
+  IMPORT = 'Import',
+  STICKER = 'Stickers',
+  UNDO = 'Undo',
+  SHOWSTROKES = 'Strokes',
+  SHOWCOLORS = 'Colors',
 }

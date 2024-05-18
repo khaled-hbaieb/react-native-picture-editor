@@ -18,7 +18,7 @@ const ColorButton = ({color, onPress, inMenu}: ColorButtonProps) => {
         height={inMenu ? 25 : 20}
         color={color === 'white' ? '#f0f0f0' : color}
       />
-      <Text style={styles.textStyle}>{color}</Text>
+      <Text style={{...styles.textStyle, color: 'white'}}>{color}</Text>
     </TouchableOpacity>
   );
 };

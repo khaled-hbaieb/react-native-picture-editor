@@ -2,12 +2,13 @@ import React from 'react';
 import {
   View,
   StyleSheet,
-  Pressable,
-  Text,
   Animated,
   LayoutChangeEvent,
+  Dimensions,
 } from 'react-native';
 import {DeleteIcon} from '../drawables/svg';
+
+const {width} = Dimensions.get('window');
 
 interface DeleteButtonAnimatedProps {
   onLayout?: (event: LayoutChangeEvent) => void;
@@ -31,7 +32,7 @@ export default DeleteButtonAnimated;
 const styles = StyleSheet.create({
   container: {
     height: 50,
-    bottom: 20,
+    bottom: width * 0.35,
     width: 50,
     borderWidth: 1,
     borderColor: 'white',

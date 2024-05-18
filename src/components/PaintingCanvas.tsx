@@ -203,28 +203,15 @@ const PaintingCanvas = () => {
 
   return (
     <View style={style.container}>
-      <Toolbar
-        color={color}
-        strokeWidth={strokeWidth}
-        setColor={setColor}
-        setStrokeWidth={setStrokeWidth}
-        onSave={onSave}
-        onImport={onImport}
-        setPaths={setPaths}
-        setBackgroundImage={setBackgroundImage}
-        handlePresentModalPress={handlePresentModalPress}
-        undoLastDraw={undoLastDraw}
-      />
-
-      <Canvas style={style.container} onTouch={touchHandler} ref={ref}>
+      <Canvas style={style.canvasContainer} onTouch={touchHandler} ref={ref}>
         {backgroundImage ? (
           <SkiaImage
             image={backgroundImage}
             fit={'contain'}
             x={0}
-            y={-50}
+            y={-45}
             width={width}
-            height={height}
+            height={height - width * 0.6}
             style={'stroke'}
           />
         ) : (
@@ -268,6 +255,18 @@ const PaintingCanvas = () => {
           animatedDeketeBtnScale={animatedDeketeBtnScale}
         />
       )}
+      <Toolbar
+        color={color}
+        strokeWidth={strokeWidth}
+        setColor={setColor}
+        setStrokeWidth={setStrokeWidth}
+        onSave={onSave}
+        onImport={onImport}
+        setPaths={setPaths}
+        setBackgroundImage={setBackgroundImage}
+        handlePresentModalPress={handlePresentModalPress}
+        undoLastDraw={undoLastDraw}
+      />
     </View>
   );
 };
@@ -280,5 +279,12 @@ const style = StyleSheet.create({
     width: '100%',
     backgroundColor: 'black',
     alignItems: 'center',
+  },
+  canvasContainer: {
+    flex: 1,
+    width: '100%',
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

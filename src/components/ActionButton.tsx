@@ -5,6 +5,7 @@ import {
   Text,
   ViewStyle,
   LayoutChangeEvent,
+  View,
 } from 'react-native';
 import React from 'react';
 
@@ -15,6 +16,7 @@ interface ActionButtonProps {
   style?: StyleProp<ViewStyle>;
   onLayout?: (event: LayoutChangeEvent) => void;
   children?: React.ReactNode;
+  isSelected?: boolean;
 }
 
 const ActionButton: React.FC<ActionButtonProps> = ({
@@ -24,16 +26,28 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   style,
   onLayout,
   children,
+  isSelected,
 }) => {
   return (
-    <Pressable
-      onLayout={onLayout}
-      disabled={disabled}
-      onPress={onPress}
-      style={[styles.container, style]}>
-      {children}
+    <View style={styles.container}>
+      <Pressable
+        onLayout={onLayout}
+        disabled={disabled}
+        onPress={() => {
+          onPress?.();
+        }}
+        style={[
+          styles.pressable,
+          style,
+          {
+            borderColor: isSelected ? 'white' : undefined,
+            borderWidth: isSelected ? 1 : undefined,
+          },
+        ]}>
+        {children}
+      </Pressable>
       {text ? <Text style={styles.textStyle}>{text}</Text> : null}
-    </Pressable>
+    </View>
   );
 };
 
@@ -41,12 +55,22 @@ export default ActionButton;
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 30,
+  },
+  pressable: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50,
+    width: 50,
+    backgroundColor: 'rgba(42,42,42,1)',
+    borderRadius: 35,
+    marginHorizontal: 10,
   },
   textStyle: {
-    color: '#000000',
-    fontSize: 13,
+    color: 'rgba(160,160,166,1)',
+    fontSize: 11,
+    marginTop: 5,
   },
 });

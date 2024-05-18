@@ -37,10 +37,11 @@ export default ColorsMenu;
 
 const styles = StyleSheet.create({
   toolbar: {
-    backgroundColor: '#ffffff',
+    backgroundColor: 'rgba(30,30,30,1)',
     height: 50,
-    width: width * 0.8,
-    borderRadius: 100,
+    width: '100%',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     borderColor: '#f0f0f0',
     borderWidth: 1,
     flexDirection: 'row',
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
   },
   colorToolbar: {
     position: 'absolute',
-    top: 80,
+    bottom: width * 0.3,
     justifyContent: 'space-between',
     zIndex: 100,
   },

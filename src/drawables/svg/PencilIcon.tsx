@@ -1,25 +1,32 @@
-import * as React from "react";
-import Svg, { Path, SvgProps } from "react-native-svg";
+import * as React from 'react';
+import Svg, {Path, SvgProps, G, Circle} from 'react-native-svg';
 
-export const PencilIcon: React.FC<SvgProps> = (props) => {
-  const { width = 16, height = 19, color = "#000", ...restProps } = props;
+export const PencilIcon: React.FC<SvgProps> = props => {
+  const {
+    width = 16,
+    height = 19,
+    color = props.color ? props.color : '#fff',
+    ...restProps
+  } = props;
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      stroke={color}
+      strokeWidth={3}
+      viewBox="0 0 64 64"
       width={width}
       height={height}
-      //xmlSpace="preserve"
-      clipRule="evenodd"
-      strokeLinejoin="round"
-      strokeMiterlimit={2}
-      viewBox="0 0 64 64"
-      fill={color}
-      {...restProps}
-    >
-      <Path
-        d="M55.944 51.712v4.201l-33.652-.027 4.71-4.174h28.942ZM48.389 8c1.649 0 2.505.128 4.752 2.011 2.294 1.921 2.707 3.419 2.803 5.087.102 1.795-.504 3.976-2.188 5.681L21.795 52.74c-.52.475-.629.45-.977.553L10.592 55.85c-1.472.299-2.854-1.049-2.55-2.55l2.557-10.226c.1-.334.133-.517.553-.976 10.696-10.697 21.195-21.594 32.09-32.087C44.663 8.676 46.739 8 48.389 8ZM16.014 43.182l-1.477 1.477-1.566 6.262 6.262-1.566 1.479-1.474-4.698-4.699ZM46.19 22.609l-4.802-4.801-22.493 22.493 4.712 4.713c7.549-7.448 15.196-14.801 22.583-22.405Zm2.826-2.936c.618-.648 1.234-1.298 1.848-1.951 1.673-1.826.443-5.454-2.307-5.578-.056-.002-.112-.002-.168-.002a3.406 3.406 0 0 0-2.312.977l-1.807 1.808 4.746 4.746Z"
-        fillRule="nonzero"
-      />
+      color={color}
+      {...props}>
+      <G strokeLinecap="round">
+        <Path d="M34.07 50.93s19.79-6.55 11.61-24.33c0 0-4.8-11.46-19.31-13.27S8.3 20.8 8.3 20.8 1.81 33.68 13.1 35c1.62.19 5-.56 6.4 1.33s.29 4.2 0 8.8c-.16 2.56 1.77 8.74 14.57 5.8Z" />
+        <Circle cx={17.2} cy={24.01} r={3.59} />
+        <Circle cx={38.02} cy={28.02} r={2.43} />
+        <Circle cx={38.02} cy={39.04} r={2.43} />
+        <Circle cx={28.14} cy={44.38} r={2.43} />
+        <Path d="M54 12.62c-.69 3.31-2.07 10.9-2.18 27a.41.41 0 0 0 .41.41h4.91a.41.41 0 0 0 .41-.42c-.1-2.82-.74-18.12-2.75-27a.41.41 0 0 0-.8.01ZM57.48 43.8c0 1.53-1.92 7.37-2.78 7.37s-2.78-5.84-2.78-7.37a2.78 2.78 0 1 1 5.56 0Z" />
+      </G>
     </Svg>
   );
 };
